@@ -47,10 +47,10 @@ The final objective was to identify the flag associated with the
 Sisterhood of the Travelling Packets target.
 
 ---
-
+```
 ## Investigation Path
 
-```text
+```
 Pantalones Leak Site
         |
         v
