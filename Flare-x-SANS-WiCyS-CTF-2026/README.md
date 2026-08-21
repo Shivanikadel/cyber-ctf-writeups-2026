@@ -246,7 +246,7 @@ curl.exe --socks5-hostname 127.0.0.1:9150 `
 ```
 The authentication succeeded and returned the administrative dashboard.
 
-![Admin access](images/admin-access-url.png)
+![Admin access](images/admin-access-curl.png)
 The login was successful.
 
 ## FLAG FOUND
