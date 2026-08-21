@@ -104,4 +104,23 @@ This became useful later because the API conversations contained messages from t
 ---
 
 
+## 5. Inspecting the Leak Files
 
+The website exposed downloadable leak files for some of the victims.
+
+The **QuantumCore Systems** entry provided access to a leak archive.
+
+![QuantumCore leak files](images/quantumcore-leak-files.png)
+
+The **AetherFlow Enterprises** entry also exposed a leak archive.
+
+![AetherFlow leak files](images/aetherflow-leak-files.png)
+
+The AetherFlow archive contained:
+
+```text
+aetherflow/
+├── api_keys_internal.yaml
+├── customers.sql
+├── route_algorithms_PROPRIETARY.sql
+└── .exfil.sh
