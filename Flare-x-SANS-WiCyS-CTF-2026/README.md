@@ -10,78 +10,98 @@
 **Status:** Completed
 
 > ⚠️ This write-up contains spoilers and challenge solutions.
-
 ---
 
-## 1. Initial Reconnaissance
+## Overview
 
-The challenge initially led to an AetherFlow-related environment containing information that appeared to have been exposed by the ransomware group **pantalones**.
+This write-up documents my investigation of the **Sisterhood of the Travelling Packets** challenge from the Flare x SANS WiCyS Capture the Flag 2026.
 
-The objective was not simply to download the AetherFlow leak. The exposed information provided clues that could be followed to investigate the group's infrastructure and eventually uncover the CTF flag.
+The investigation began with a ransomware leak-style website associated with the fictional group **pantalones**.
 
-The initial exposed files included:
+The objective was to investigate the exposed infrastructure, identify the relationship between the leak pages and the compromised victim data, enumerate the exposed API, recover useful information from the available files and conversations, and ultimately retrieve the CTF flag.
 
-```text
-aetherflow/
-├── .exfil.sh
-├── api_keys_internal.yaml
-├── customers.sql
-└── route_algorithms_PROPRIETARY.sql
-This challenge involved investigating the infrastructure of a
-ransomware group known as `pantalones`.
+The challenge involved a combination of:
 
-The investigation began with a leak portal and ultimately required
-following several pieces of exposed information across:
-
-- A ransomware leak site
-- AetherFlow's leaked files
-- A hidden `.exfil.sh` script
-- A Tor hidden service
-- An exposed API
-- Sequential conversation IDs
-- Internal attacker communications
+- Web enumeration
+- Hidden files and dotfiles
+- API enumeration
+- Parameter discovery
+- Conversation enumeration
+- Base64 decoding
 - Credential discovery
-- An administrative panel
-
-The final objective was to identify the flag associated with the
-Sisterhood of the Travelling Packets target.
+- Authentication
+- Administrative panel enumeration
+- Connecting information across multiple compromised organisations
 
 ---
-```
-## Investigation Path
 
-```
-Pantalones Leak Site
-        |
-        v
-AetherFlow Leak
-        |
-        v
-AetherFlow ZIP
-        |
-        v
-Hidden .exfil.sh
-        |
-        v
-Panel URL + API Key
-        |
-        v
-API Enumeration
-        |
-        v
-Conversation Enumeration
-        |
-        v
-Internal Crew Messages
-        |
-        v
-Credential Discovery
-        |
-        v
-Admin Panel
-        |
-        v
-Sisterhood of the Travelling Packets
-        |
-        v
-FLAG
+# 1. Initial Website Enumeration
+
+The investigation started by accessing the exposed `.onion` website through Tor.
+
+The landing page identified the group as:
+
+> `pantalones`
+
+and described the operation as:
+
+> `stealing your files since '26.`
+
+![Website landing page](images/Website-landing-index-page.png)
+
+The main navigation exposed several pages:
+
+- `index.php`
+- `crew.php`
+- `about.php`
+
+I inspected each available page rather than assuming the landing page contained the entire challenge.
+
+---
+
+# 2. Website Content
+
+The main leak page contained a list of victims.
+
+![Index page content](images/index-page-content.png)
+
+The page revealed several organisations, including:
+
+- Sisterhood of the Travelling Packets
+- NexaVista Solutions
+- StratifyTech Inc.
+- Lumenisys Global
+- QuantumCore Systems
+- AetherFlow Enterprises
+
+The page source also contained information about leaked files and downloadable content.
+
+---
+
+# 3. Inspecting the About Page
+
+The `about.php` page provided additional context about the group.
+
+![About page](images/about-page.png)
+
+The website claimed that pantalones was a group of four hackers:
+
+- vex — operator / panel developer
+- crypt — payload engineer
+- mora — negotiations
+- skid — initial access
+
+---
+
+# 4. Enumerating the Crew Page
+
+The `/crew.php` page confirmed the operators and their roles.
+
+![Crew page](images/crew-path-page.png)
+
+This became useful later because the API conversations contained messages from these operators.
+
+---
+
+
+
