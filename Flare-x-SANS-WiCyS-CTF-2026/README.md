@@ -93,13 +93,6 @@ The `about.php` page provided additional context about the group.
 
 ![About page](images/about-page.png)
 
-The website claimed that pantalones was a group of four hackers:
-
-- vex — operator / panel developer
-- crypt — payload engineer
-- mora — negotiations
-- skid — initial access
-
 ---
 
 # 4. Enumerating the Crew Page
@@ -109,6 +102,13 @@ The `/crew.php` page confirmed the operators and their roles.
 ![Crew page](images/crew-path-page.png)
 
 This became useful later because the API conversations contained messages from these operators.
+
+The website claimed that pantalones was a group of four hackers:
+
+- vex — operator / panel developer
+- crypt — payload engineer
+- mora — negotiations
+- skid — initial access
 
 ---
 
