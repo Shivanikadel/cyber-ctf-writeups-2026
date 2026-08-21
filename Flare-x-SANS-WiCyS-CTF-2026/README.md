@@ -230,7 +230,7 @@ Pantal0n3s_Rul3z!
 ```
 This provided valid credentials for the administrative interface.
 
-![Flag](images/decoded-string.png)
+![Encode-Decode](images/decoded-string.png)
 
 ---
 ## 10. Accessing admin.php
@@ -246,7 +246,7 @@ curl.exe --socks5-hostname 127.0.0.1:9150 `
 ```
 The authentication succeeded and returned the administrative dashboard.
 
-![Admin access](images/admin-access-url)
+![Admin access](images/admin-access-url.png)
 The login was successful.
 
 ## FLAG FOUND
