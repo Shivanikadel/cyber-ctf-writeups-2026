@@ -57,14 +57,6 @@ The main navigation exposed several pages:
 
 I inspected each available page rather than assuming the landing page contained the entire challenge.
 
----
-
-# 2. Website Content
-
-The main leak page contained a list of victims.
-
-![Index page content](images/index-page-content.png)
-
 The page revealed several organisations, including:
 
 - Sisterhood of the Travelling Packets
@@ -75,7 +67,24 @@ The page revealed several organisations, including:
 - AetherFlow Enterprises
 
 The page source also contained information about leaked files and downloadable content.
+---
 
+# 2. Website Content
+
+The main leak page contained a list of victims.
+
+![Index page content](images/index-page-content.png)
+
+After viewing the main leak page, I inspected its HTML/source rather than relying only on the rendered page.
+
+The page contained a JavaScript `victims` array containing information about the listed targets.
+
+For example, the source exposed direct paths to two leaked archives:
+
+```text
+downloads/quantumcore/quantumcore_leak.zip
+downloads/aetherflow/aetherflow_leak.zip
+```
 ---
 
 # 3. Inspecting the About Page
