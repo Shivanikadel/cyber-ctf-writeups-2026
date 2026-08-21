@@ -230,25 +230,22 @@ Pantal0n3s_Rul3z!
 ```
 This provided valid credentials for the administrative interface.
 
-![Credential for Admin](images/decoded-string.png)
+![Flag](images/decoded-string.png)
+
 ---
 ## 10. Accessing admin.php
-The website had previously exposed:
-```text
-/admin.php
-```
-through `robots.txt`.
 
-The page presented a login form requiring:
+The `admin.php` endpoint discovered through `robots.txt` presented an authentication form.
+
+I used the credentials discovered during the conversation enumeration:
 ```text
-Username
-Password
+curl.exe --socks5-hostname 127.0.0.1:9150 `
+  -c cookies.txt `
+  -d "username=mora&password=Pantal0n3s_Rul3z!" `
+  "$URL/admin.php"
 ```
-Using the credentials recovered from the conversation, I authenticated as:
-```text
-Username: mora
-Password: Pantal0n3s_Rul3z!
-```
+The authentication succeeded and returned the administrative dashboard.
+
 ![Admin access](images/admin-access-url)
 The login was successful.
 
